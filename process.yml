@@ -1,0 +1,11 @@
+apps:
+    - script: ./dist/app.js
+      name: "express_typeScript_boilerplate"
+      instances: 2
+      watch: true
+      exec_mode: cluster
+      env:
+          NODE_ENV: production
+          NODE_PATH: ./dist
+      env_production:
+          NODE_ENV: production

@@ -1,0 +1,31 @@
+version: "2.1"
+
+services:
+    app:
+        image: express_typeScript_boilerplate
+        build: .
+        environment:
+            NODE_ENV: production
+            PORT: $PORT
+            DEBUG: $DEBUG
+            PROTOCOL: $PROTOCOL
+            MONGO_HOST: $MONGO_HOST
+            MONGO_PORT: $MONGO_PORT
+            MONGO_DB: $MONGO_DB
+            MONGO_USERNAME: $MONGO_USERNAME
+            MONGO_PASSWORD: $MONGO_PASSWORD
+
+        ports:
+            - 7021:7021
+        restart: always
+        links:
+            - database
+    database:
+        image: mongo
+        expose:
+            - "27017"
+        volumes:
+            - ./data:/data/db
+        ports:
+            - 27017:27017
+        container_name: "compose_mongodb"
